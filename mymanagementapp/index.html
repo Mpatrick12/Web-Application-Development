@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Business Management Application</title>
   <style>
-    /* Basic styling */
+    
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 20px;
-      background-color: #000; /* Black background */
-      color: #fff; /* White text */
+      background-color: #000; 
+      color: #fff; 
     }
     .task-list {
       list-style-type: none;
@@ -22,14 +22,14 @@
       cursor: pointer;
     }
     .task-item.completed {
-      background-color: #e6f0ff; /* Light blue background for completed tasks */
+      background-color: #e6f0ff; 
       padding-left: 20px;
     }
     .task-item.completed::before {
-      content: '\2713'; /* Unicode checkmark character */
+      content: '\2713'; 
       display: inline-block;
       margin-right: 10px;
-      color: #007bff; /* Blue color for the checkmark */
+      color: #007bff; 
     }
   </style>
 </head>
@@ -42,10 +42,10 @@
   <button id="deleteAllBtn">Delete All Tasks</button>
 
   <script>
-    // Array to store tasks
+    
     let tasks = [];
 
-    // Function to render tasks
+    
     function renderTasks() {
       const taskList = document.getElementById("taskList");
       taskList.innerHTML = "";
@@ -54,11 +54,11 @@
         li.textContent = task.text;
         li.className = "task-item" + (task.completed ? " completed" : "");
         
-        // Create delete button
+        
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.onclick = (event) => {
-          event.stopPropagation(); // Prevent toggling task when delete button is clicked
+          event.stopPropagation(); 
           deleteTask(index);
         };
         li.appendChild(deleteButton);
@@ -69,7 +69,7 @@
       updateTotalTasks();
     }
 
-    // Function to add a new task
+    
     function addTask() {
       const input = document.getElementById("taskInput");
       const taskText = input.value.trim();
@@ -82,44 +82,44 @@
       }
     }
 
-    // Function to toggle task completion
+    
     function toggleTask(index) {
       tasks[index].completed = !tasks[index].completed;
       renderTasks();
     }
 
-    // Function to delete task
+    
     function deleteTask(index) {
       tasks.splice(index, 1);
       renderTasks();
     }
 
-    // Function to delete all tasks
+    
     function deleteAllTasks() {
       tasks = [];
       renderTasks();
     }
 
-    // Function to update total tasks count
+    
     function updateTotalTasks() {
       const totalTasksElement = document.getElementById("totalTasks");
       totalTasksElement.textContent = "Total Tasks: " + tasks.length;
     }
 
-    // Add task button event listener
+    
     document.getElementById("addTaskBtn").addEventListener("click", addTask);
 
-    // Delete all tasks button event listener
+    
     document.getElementById("deleteAllBtn").addEventListener("click", deleteAllTasks);
 
-    // Add task when Enter key is pressed
+    
     document.getElementById("taskInput").addEventListener("keypress", function(event) {
       if (event.key === "Enter") {
         addTask();
       }
     });
 
-    // Initial rendering of tasks
+    
     renderTasks();
   </script>
 </body>
