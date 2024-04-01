@@ -9,7 +9,10 @@ To build the Docker image and run a container using the image;
 Ensure Docker is installed on your machine
 Navigate to the project directory containing the Dockerfile
 Build the Docker image using the following command:
-WORKDIR /app
-RUN npm install
-COPY . .
-CMD ["node", "app.js"]
+FROM nginx:alpine
+
+COPY . /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
